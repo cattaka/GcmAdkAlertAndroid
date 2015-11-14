@@ -1,0 +1,70 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* .factorypath
+* .gitignore
+* factory/
+* factory/cathandsgendroid-apt-0.2.3.jar
+* ic_launcher-web.png
+* misc/
+* misc/arduino/
+* misc/arduino/HumiTemp/
+* misc/arduino/HumiTemp/DHT.cpp
+* misc/arduino/HumiTemp/DHT.h
+* misc/arduino/HumiTemp/Geppa.cpp
+* misc/arduino/HumiTemp/Geppa.h
+* misc/arduino/HumiTemp/HumiTemp.ino
+* misc/arduino/HumiTemp/README.txt
+* misc/freecad/
+* misc/freecad/Box.gcode
+* misc/freecad/Box.stl
+* proguard-project.txt
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+android-support-v4.jar => com.android.support:support-v4:18.0.0
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app/src/main/AndroidManifest.xml
+* libs/cathandsgendroid-core-0.2.3.jar => app/libs/cathandsgendroid-core-0.2.3.jar
+* libs/d2xx.jar => app/libs/d2xx.jar
+* libs/libgeppa.jar => app/libs/libgeppa.jar
+* libs/physicaloidlibrary.jar => app/libs/physicaloidlibrary.jar
+* lint.xml => app/lint.xml
+* res/ => app/src/main/res/
+* src/ => app/src/main/java/
+* src/net/cattaka/android/humitemp/entity/.gitignore => app/src/main/resources/net/cattaka/android/humitemp/entity/.gitignore
+* src/net/cattaka/android/humitemp/entity/handler/.gitignore => app/src/main/resources/net/cattaka/android/humitemp/entity/handler/.gitignore
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)
