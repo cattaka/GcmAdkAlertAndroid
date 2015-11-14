@@ -9,6 +9,8 @@ import android.os.Message;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.SystemClock;
+import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.widget.Toast;
 
 import net.cattaka.android.gcmadkalart.data.Command;
@@ -21,6 +23,7 @@ import net.cattaka.libgeppa.data.ConnectionState;
 import net.cattaka.libgeppa.data.PacketWrapper;
 
 import java.util.List;
+import java.util.Locale;
 
 public class GeppaServiceEx extends AdkPassiveGeppaService<MyPacket> {
     public static final String EXTRA_ACTIONS = "actions";
@@ -31,11 +34,28 @@ public class GeppaServiceEx extends AdkPassiveGeppaService<MyPacket> {
     private HandlerThread mHandlerThread;
     private Handler mHandler;
 
+    private TextToSpeech mTextToSpeech;
+
     private WakeLock mWakeLock;
+
+    TextToSpeech.OnInitListener mOnInitListener = new TextToSpeech.OnInitListener() {
+        @Override
+        public void onInit(int status) {
+            if (TextToSpeech.SUCCESS == status) {
+                Locale locale = Locale.ENGLISH;
+                if (mTextToSpeech.isLanguageAvailable(locale) >= TextToSpeech.LANG_AVAILABLE) {
+                    mTextToSpeech.setLanguage(locale);
+                } else {
+                    Log.d("", "Error SetLocale");
+                }
+            } else {
+                Log.d("", "Error Init");
+            }
+        }
+    };
 
     public GeppaServiceEx() {
         super(new MyPacketFactory());
-
     }
 
     @Override
@@ -48,6 +68,8 @@ public class GeppaServiceEx extends AdkPassiveGeppaService<MyPacket> {
         mHandlerThread = new HandlerThread("Actions");
         mHandlerThread.start();
         mHandler = new Handler(mHandlerThread.getLooper());
+
+        mTextToSpeech = new TextToSpeech(me, mOnInitListener);
     }
 
     @Override
@@ -57,6 +79,9 @@ public class GeppaServiceEx extends AdkPassiveGeppaService<MyPacket> {
             mWakeLock.release();
         }
 
+        if (mTextToSpeech != null) {
+            mTextToSpeech.shutdown();
+        }
         mHandlerThread.quit();
     }
 
@@ -130,6 +155,7 @@ public class GeppaServiceEx extends AdkPassiveGeppaService<MyPacket> {
                     sHandler.post(new Runnable() {
                         @Override
                         public void run() {
+                            mTextToSpeech.speak(String.valueOf(action.getText()),TextToSpeech.QUEUE_ADD, null);
                             Toast.makeText(me, String.valueOf(action.getText()), Toast.LENGTH_LONG).show();
                         }
                     });
