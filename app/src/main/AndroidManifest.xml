@@ -4,24 +4,16 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="9"
         android:targetSdkVersion="15" />
 
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
-    <uses-feature
-        android:name="android.hardware.camera.autofocus"
-        android:required="false" />
-    <uses-feature
-        android:name="android.hardware.camera.front"
-        android:required="false" />
-    <uses-feature
-        android:name="android.hardware.camera.front.autofocus"
-        android:required="false" />
-
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <permission android:name="net.cattaka.android.gcmadkalart.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="net.cattaka.android.gcmadkalart.permission.C2D_MESSAGE" />
 
     <application
         android:name="net.cattaka.android.gcmadkalart.MyApplication"
@@ -29,6 +21,31 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <uses-library android:name="com.android.future.usb.accessory" />
+
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="net.cattaka.android.gcmadkalart" />
+            </intent-filter>
+        </receiver>
+        <service
+            android:name=".MyGcmListenerService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".MyInstanceIDListenerService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID"/>
+            </intent-filter>
+        </service>
+        <service android:name=".RegistrationIntentService" />
 
         <activity android:name="net.cattaka.android.gcmadkalart.MainActivity" >
             <intent-filter>
@@ -43,11 +60,11 @@
                 android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED"
                 android:resource="@xml/accessory_filter" />
 
-            </activity>
+        </activity>
+        <activity android:name=".GcmActivity"/>
 
         <service android:name="net.cattaka.android.gcmadkalart.GeppaServiceEx" android:exported="false">
         </service>
-        <activity android:name="net.cattaka.android.gcmadkalart.GraphActivity"></activity>
     </application>
 
 </manifest>

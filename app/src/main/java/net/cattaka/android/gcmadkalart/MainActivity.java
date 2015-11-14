@@ -89,12 +89,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         // Setting event listeners
         findViewById(R.id.button_send_led_rgb).setOnClickListener(this);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
+        findViewById(R.id.button_gcm_setting).setOnClickListener(this);
     }
 
     @Override
@@ -125,6 +120,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
             } catch (RemoteException e) {
                 throw new RuntimeException(e);
             }
+        } else if (v.getId() == R.id.button_gcm_setting) {
+            Intent intent = new Intent(this, GcmActivity.class);
+            startActivity(intent);
         }
     }
 }
