@@ -21,6 +21,9 @@ android {
 
 dependencies {
     compile 'com.android.support:support-v4:18.0.0'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.6.3'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.6.3'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.6.3'
 
     apt 'net.cattaka:cathandsgendroid-apt:0.4.4'
     compile 'net.cattaka:cathandsgendroid-core:0.4.4'
