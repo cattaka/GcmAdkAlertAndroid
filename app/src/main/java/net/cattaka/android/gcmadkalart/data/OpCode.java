@@ -2,13 +2,12 @@
 package net.cattaka.android.gcmadkalart.data;
 
 public enum OpCode {
-    REQUEST((byte)1), //
-    RESPONSE((byte)2), //
+    LED_RGB((byte)1), //
     UNKNOWN((byte)-1);
 
     private byte value;
 
-    private OpCode(byte value) {
+    OpCode(byte value) {
         this.value = value;
     }
 
