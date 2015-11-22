@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.cattaka.android.gcmadkalart"
+    package="net.cattaka.android.gcmadkalert"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -11,12 +11,12 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
-    <permission android:name="net.cattaka.android.gcmadkalart.permission.C2D_MESSAGE"
+    <permission android:name="net.cattaka.android.gcmadkalert.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
-    <uses-permission android:name="net.cattaka.android.gcmadkalart.permission.C2D_MESSAGE" />
+    <uses-permission android:name="net.cattaka.android.gcmadkalert.permission.C2D_MESSAGE" />
 
     <application
-        android:name="net.cattaka.android.gcmadkalart.MyApplication"
+        android:name="net.cattaka.android.gcmadkalert.MyApplication"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
@@ -28,26 +28,26 @@
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <category android:name="net.cattaka.android.gcmadkalart" />
+                <category android:name="net.cattaka.android.gcmadkalert" />
             </intent-filter>
         </receiver>
         <service
-            android:name=".MyGcmListenerService"
+            android:name="net.cattaka.android.gcmadkalert.MyGcmListenerService"
             android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </service>
         <service
-            android:name=".MyInstanceIDListenerService"
+            android:name="net.cattaka.android.gcmadkalert.MyInstanceIDListenerService"
             android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.android.gms.iid.InstanceID"/>
             </intent-filter>
         </service>
-        <service android:name=".RegistrationIntentService" />
+        <service android:name="net.cattaka.android.gcmadkalert.RegistrationIntentService" />
 
-        <activity android:name="net.cattaka.android.gcmadkalart.MainActivity" >
+        <activity android:name="net.cattaka.android.gcmadkalert.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -61,9 +61,9 @@
                 android:resource="@xml/accessory_filter" />
 
         </activity>
-        <activity android:name=".GcmActivity"/>
+        <activity android:name="net.cattaka.android.gcmadkalert.GcmActivity"/>
 
-        <service android:name="net.cattaka.android.gcmadkalart.GeppaServiceEx" android:exported="false">
+        <service android:name="net.cattaka.android.gcmadkalert.GeppaServiceEx" android:exported="false">
         </service>
     </application>
 

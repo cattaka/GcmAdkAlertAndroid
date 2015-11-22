@@ -12,10 +12,10 @@
 
 //===================================================
 AndroidAccessory gAcc("Cattaka Lab",
-"Gcm Adk Alart",
-"Gcm Adk Alart",
+"Gcm Adk Alert",
+"Gcm Adk Alert",
 "1.0",
-"https://play.google.com/store/apps/details?id=net.cattaka.android.gcmadkalart",
+"https://play.google.com/store/apps/details?id=net.cattaka.android.gcmadkalert",
 "0000000012345678");
 
 //===================================================
@@ -27,7 +27,7 @@ unsigned long gLastTime;
 
 void setup() {
   Serial.begin(9600); 
-  Serial.println("GcmAdkAlart");
+  Serial.println("GcmAdkAlert");
 
   pinMode(PIN_R, OUTPUT);
   pinMode(PIN_G, OUTPUT);
@@ -39,9 +39,7 @@ void setup() {
 }
 
 void loop() {
-  Serial.println("A");
   if (gAcc.isConnected()) {
-  Serial.println("B");
     unsigned long t = (1000 - (millis() - gLastTime));
     if (t<= 1000) {
       delay(t);

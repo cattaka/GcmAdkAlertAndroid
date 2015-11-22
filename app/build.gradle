@@ -6,7 +6,7 @@ android {
     buildToolsVersion "23.0.0"
 
     defaultConfig {
-        applicationId "net.cattaka.android.gcmadkalart"
+        applicationId "net.cattaka.android.gcmadkalert"
         minSdkVersion 9
         targetSdkVersion 15
     }
